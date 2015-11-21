@@ -7,7 +7,7 @@ grayWindow = figure('Name', 'gray');
 imshow(carroGray);
 
 sobelFilter = fspecial('sobel');
-carroSobel = imfilter(carroGray, sobel);
+carroSobel = imfilter(carroGray, sobelFilter);
 sobelWindow = figure('Name', 'sobel');
 imshow(carroSobel);
 
@@ -25,5 +25,9 @@ closedWindow = figure('Name', 'closed');
 imshow(carroClosed);
 
 carroLabeled = bwlabel(carroFiltered);
-
 carroColoredLabels = label2rgb(carroLabeled, 'colorcube', 'c', 'noshuffle');
+coloredLabelsWindow = figure('Name', 'labels');
+imshow(carroColoredLabels);
+
+pause;
+close all;
