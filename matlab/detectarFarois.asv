@@ -1,0 +1,25 @@
+function [farol1 farol2] = detectarFarois( imagemCarro )
+    % Transformação para yCbCr
+    carroYCbCr = rgb2ycbcr(imagemCarro);
+    
+    % Aplica limiarização no canal Cr para identificar o farol
+    farois = arrayfun(@checkColorRange, carroYCbCr(:,:,1), carroYCbCr(:,:,2), carroYCbCr(:,:,3));
+    farois = cast(farois,'uint8');
+    
+    % Agrupa pixels próximos
+    labelFarois = bwlabel(farois);
+    
+    % Gera imagem para ser exibida
+    farolColoredLabels = label2rgb(labelFarois, 'colorcube', 'c', 'noshuffle');
+    
+    % TODO: Calcular o centróide dos agrupamentos identificados
+    farol1 = arrayfun(@(x)x==1, labelFarois);
+    farol2 = arrayfun(@(x)x==2, labelFarois);
+    
+    % TODO: Rodar o sobel no canal Cr e elevar todos 
+    
+    % Mostra agrupamentos
+    figure;
+    imshow(farolColoredLabels);
+end
+
