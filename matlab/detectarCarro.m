@@ -12,13 +12,20 @@ imshow(carroGray);
 
 % Sobel
 sobelFilter = fspecial('sobel');
-carroSobel = imfilter(carroGray, sobelFilter);
+carroSobelHorizontal = logical(im2bw(imfilter(carroGray, sobelFilter),0.5));
+carroSobelVertical = logical(im2bw(imfilter(carroGray, sobelFilter'),0.5));
+sobelWindowH = figure('Name', 'sobelHorizontal');
+imshow(carroSobelHorizontal);
+sobelWindowV = figure('Name', 'sobelVertical');
+imshow(carroSobelVertical);
+sobel = carroSobelHorizontal|carroSobelVertical;
+%sobel = arrayfun((@(x,y)x&&y),carroSobelH, carroSobelW);
 sobelWindow = figure('Name', 'sobel');
-imshow(carroSobel);
+imshow(sobel);
 
 % Limiar
-threshold = 50;
-carroThresh = arrayfun(@(x)x>threshold, carroSobel);
+threshold = 0.7;
+carroThresh = im2bw(carroSobel,threshold);
 threshWindow = figure('Name', 'threshold');
 imshow(carroThresh);
 
