@@ -1,9 +1,9 @@
 % Carregando imagem do carro
-carro = imread('carro (4).jpg');
+carro = imread('audi.jpg');
 originalWindow = figure('Name','original');
 imshow(carro);
 
-detectarFarois(carro);
+%detectarFarois(carro);
 
 % Escala de cinza
 carroGray = rgb2gray(carro);
