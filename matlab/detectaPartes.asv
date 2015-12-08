@@ -1,0 +1,19 @@
+function [ ] = detectaPartes( imagemCarro )
+%UNTITLED2 Summary of this function goes here
+%   Detailed explanation goes here
+
+% Selecionando o pixel na placa
+imshow(imagemCarro);
+pixelSelecionado = int64(ginput(1));
+labelPlaca = imagemLabels(pixelSelecionado(2),pixelSelecionado(1));
+
+% Gerando a mascara dos farois e labels da placa
+mascaraFarois = detectaFarois(imagemCarro);
+[labelsPlaca, numLabels] = detectaPlaca(imagemCarro);
+
+% Juntando as duas
+(1-mascaraFarois
+
+
+end
+
